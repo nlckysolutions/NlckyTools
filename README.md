@@ -15,3 +15,6 @@ When you run it, you'll be asked for a discord webhook. You'll need to make one,
 ### - Javascript Bookmarklet Cookie Stealer
 This script will steal anyones cookies the second they click the bookmarklet! (After you convert it to a bookmarklet. You can find bookmarklet makers on Google.)
 To use, simply setup a discord webhook, paste it into the CookieStealerBookmarklet.js script located in JavascriptTools, convert it into a bookmarklet, and add it into someones bookmarks! When they click it, you'll recieve their cookies, which you can use to get into their accounts!
+## Wifi Tools
+### - Wifi Cookie Stealer
+This python script, located in PythonTools/WifiTools/WifiCookieSteal.py, once executed, will give you all the cookies of everyone using the network! You can use this to hack someone on a public wifi!
