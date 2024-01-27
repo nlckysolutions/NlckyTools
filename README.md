@@ -20,3 +20,5 @@ To use, simply setup a discord webhook, paste it into the CookieStealerBookmarkl
 This python script, located in PythonTools/WifiTools/WifiCookieSteal.py, once executed, will give you all the cookies of everyone using the network! You can use this to hack someone on a public wifi!
 ### - Wifi Evil Twin
 It's simple. Located in PythonTools/WifiTools/WifiEvilTwin.py, all you have to do is enter the wifi you want to make, enter the amount, and it does the rest.
+### - Wifi Password Cracker
+Simple again. It's located in NlckyTools/PythonTools/WifiTools/WifiPasswordBruteForce.py, and it does what the title says. Have fun! PS: you can also combine this with the wifi cookie stealer to hack onto someones private wifi, and then steal the cookies! That way you're more likely to get better cookies because it's on their home network.
